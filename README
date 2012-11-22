@@ -1,0 +1,15 @@
+Install ZF CLI
+Read ZF manual http://framework.zend.com/manual/en/zend.tool.usage.cli.html
+
+Copy ZFScaffold library to your the project in library folder
+Copy Manifest.php file to your the project in main folder
+
+To enable the ZfScaffold Tool Provider
+$ zf enable config.manifest Manifest
+
+Check enable Scaffold tool
+$ zf ? scaffold
+
+Integration Scaffold to Zend Framework
+Adding parametrs needed for scaffold work to configuration file
+$ zf registration scaffold
