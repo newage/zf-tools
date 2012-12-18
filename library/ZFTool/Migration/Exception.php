@@ -4,12 +4,12 @@
  * Exception for migration
  *
  * @category Core
- * @package  Core_Migration
+ * @package  ZFTool_Migration
  * @author   V.Leontiev
  * 
  * @version  $Id$
  */
-class Core_Migration_Exception extends Core_Exception
+class ZFTool_Migration_Exception extends ZFTool_Exception
 {
     //put your code here
 }

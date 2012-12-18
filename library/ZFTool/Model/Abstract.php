@@ -27,7 +27,7 @@ abstract class ZFTool_Model_Abstract
      * Set options
      *
      * @param array $options
-     * @return Core_Db_Table_Row_Abstract
+     * @return ZFTool_Db_Table_Row_Abstract
      */
     public function setOptions($options)
     {
