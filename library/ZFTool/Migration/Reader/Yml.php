@@ -4,13 +4,13 @@
  * Read data from Yaml
  *
  * @category Core
- * @package Core_Migration
- * @subpackage Core_Migration_Reader
+ * @package ZFTool_Migration
+ * @subpackage ZFTool_Migration_Reader
  * @author V.Leontiev
  * 
  * @version  $Id$
  */
-class Core_Migration_Reader_Yml extends Core_Migration_Reader_Abstract
+class ZFTool_Migration_Reader_Yml extends ZFTool_Migration_Reader_Abstract
 {
     
     /**

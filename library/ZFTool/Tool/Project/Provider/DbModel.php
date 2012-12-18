@@ -17,12 +17,12 @@ class ZFTool_Tool_Project_Provider_DbModel
     protected $_title = '[DbModel]';
 
     /**
-     * @var Core_Migration_Manager
+     * @var ZFTool_Migration_Manager
      */
     protected $_manager = null;
 
     /**
-     * Initialize Core_Migration_Manager
+     * Initialize ZFTool_Migration_Manager
      * Load profile and load development config
      *
      * @author V.Leontiev
@@ -31,7 +31,7 @@ class ZFTool_Tool_Project_Provider_DbModel
     {
         parent::initialize();
         $resources = $this->_app->getOption('resources');
-        $this->_manager = new Core_Model_Manager($resources);
+        $this->_manager = new ZFTool_Model_Manager($resources);
     }
 
     /**

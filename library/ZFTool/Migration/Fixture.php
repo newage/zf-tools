@@ -4,12 +4,12 @@
  * Load and save for fixtures files
  *
  * @category Core
- * @package  Core_Migration
+ * @package  ZFTool_Migration
  * @author   V.Leontiev
  * 
  * @version  $Id$
  */
-class Core_Migration_Fixture
+class ZFTool_Migration_Fixture
 {
     
     /**
@@ -53,7 +53,7 @@ class Core_Migration_Fixture
         $select = $db->select()->from($tableName);
         $rows = $db->fetchAll($select);
 
-        $yaml = Core_Migration_Writer_Yml::encode(array($tableName => $rows));
+        $yaml = ZFTool_Migration_Writer_Yml::encode(array($tableName => $rows));
 
         $fileName = $tableName . '_dump.yml';
         $pathToFile = $this->getFixturesDirectoryPath() . DIRECTORY_SEPARATOR . $fileName;
@@ -66,13 +66,13 @@ class Core_Migration_Fixture
      * 
      * @param string $filePath
      * @param string $readerName
-     * @return Core_Migration_Reader_Abstract
+     * @return ZFTool_Migration_Reader_Abstract
      * @todo add object validation 
      */
     protected function _getContentFromReader($filePath)
     {
         $pathInfo = pathinfo($filePath);
-        $objectName = 'Core_Migration_Reader_' . ucfirst($pathInfo['extension']);
+        $objectName = 'ZFTool_Migration_Reader_' . ucfirst($pathInfo['extension']);
         return new $objectName($filePath);
     }
     
@@ -87,10 +87,10 @@ class Core_Migration_Fixture
         $db = Zend_Db_Table::getDefaultAdapter();
 
         foreach ($rowset as $row){
-            if ($row instanceof Core_Migration_Reader_Abstract) {
+            if ($row instanceof ZFTool_Migration_Reader_Abstract) {
                 $db->insert($tableName, $row->toArray());
             } else {
-                throw new Core_Migration_Exception('Row not instance Core_Migration_Reader_Abstract');
+                throw new ZFTool_Migration_Exception('Row not instance ZFTool_Migration_Reader_Abstract');
             }
         }
     }
