@@ -4,13 +4,13 @@
  * Write data to Yaml
  *
  * @category Core
- * @package Core_Migration
- * @subpackage Core_Migration_Writer
+ * @package ZFTool_Migration
+ * @subpackage ZFTool_Migration_Writer
  * @author V.Leontiev
  * 
  * @version  $Id$
  */
-class Core_Migration_Writer_Yml
+class ZFTool_Migration_Writer_Yml
 {
     
     public static function encode(array $rows)

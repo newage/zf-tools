@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Class Core_Migration_Abstract
+ * Class ZFTool_Migration_Abstract
  *
  * abstract migration
  *
  * @category Core
- * @package  Core_Migration
+ * @package  ZFTool_Migration
  * @author   V.Leontiev
  * 
  * @version  $Id$
  */
-abstract class Core_Migration_Abstract
+abstract class ZFTool_Migration_Abstract
 {
     const TYPE_INT = 'int';
     const TYPE_BIGINT = 'bigint';
@@ -39,7 +39,7 @@ abstract class Core_Migration_Abstract
     /**
      * migration Adapter
      *
-     * @var Core_Migration_Adapter_Abstract
+     * @var ZFTool_Migration_Adapter_Abstract
      */
     
     protected $_migrationAdapter = null;
@@ -50,7 +50,7 @@ abstract class Core_Migration_Abstract
      * update DB from migration
      * 
      * @author V.Leontiev
-     * @return  Core_Migration_Abstract
+     * @return  ZFTool_Migration_Abstract
      */
     abstract public function up();
     
@@ -60,7 +60,7 @@ abstract class Core_Migration_Abstract
      * degrade DB from migration
      * 
      * @author V.Leontiev
-     * @return  Core_Migration_Abstract
+     * @return  ZFTool_Migration_Abstract
      */
     abstract public function down();
 
@@ -69,7 +69,7 @@ abstract class Core_Migration_Abstract
      *
      * @author V.Leontiev
      * @param  Zend_Db_Adapter_Abstract $dbAdapter
-     * @return Core_Migration_Abstract
+     * @return ZFTool_Migration_Abstract
      */
     function setDbAdapter($dbAdapter = null)
     {
@@ -158,7 +158,7 @@ abstract class Core_Migration_Abstract
      * createTable
      *
      * @param   string $table table name
-     * @return  Core_Migration_Abstract
+     * @return  ZFTool_Migration_Abstract
      */
     public function createTable($table) 
     {
@@ -176,7 +176,7 @@ abstract class Core_Migration_Abstract
      * dropTable
      *
      * @param   string     $table  table name
-     * @return  Core_Migration_Abstract
+     * @return  ZFTool_Migration_Abstract
      */
     public function dropTable($table) 
     {
@@ -195,7 +195,7 @@ abstract class Core_Migration_Abstract
      * @param   string   $default
      * @param   bool     $notnull
      * @param   bool     $primary
-     * @return  Core_Migration_Abstract
+     * @return  ZFTool_Migration_Abstract
      */
     public function createColumn($table, 
                                  $column,
@@ -257,7 +257,7 @@ abstract class Core_Migration_Abstract
      * output message to console
      *
      * @param   string     $message
-     * @return  Core_Migration_Abstract
+     * @return  ZFTool_Migration_Abstract
      */
     public function message($message) 
     {

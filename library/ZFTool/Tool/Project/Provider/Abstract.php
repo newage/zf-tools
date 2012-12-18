@@ -27,7 +27,7 @@ abstract class ZFTool_Tool_Project_Provider_Abstract extends Zend_Tool_Project_P
     protected static $_bootstrap = false;
 
     /**
-     * Initialize Core_Migration_Manager
+     * Initialize ZFTool_Migration_Manager
      * Load profile and load development config
      *
      * @author V.Leontiev

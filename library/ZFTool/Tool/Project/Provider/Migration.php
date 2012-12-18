@@ -17,19 +17,19 @@ class ZFTool_Tool_Project_Provider_Migration
     protected $_title = '[Migration]';
 
     /**
-     * @var Core_Migration_Manager
+     * @var ZFTool_Migration_Manager
      */
     protected $_manager = null;
 
     /**
-     * Initialize Core_Migration_Manager
+     * Initialize ZFTool_Migration_Manager
      * Load profile and load development config
      *
      * @author V.Leontiev
      */
     public function initialize()
     {
-        $this->_manager = new Core_Migration_Manager();
+        $this->_manager = new ZFTool_Migration_Manager();
     }
 
     /**

@@ -1,16 +1,16 @@
 <?php
 /**
- * Class Core_Migration_Manager
+ * Class ZFTool_Migration_Manager
  *
  * Migration manager
  *
  * @category Core
- * @package  Core_Migration
+ * @package  ZFTool_Migration
  * @author   V.Leontiev
  * 
  * @version  $Id$
  */
-class Core_Migration_Manager
+class ZFTool_Migration_Manager
 {
     /**
      * Variable contents options
@@ -30,7 +30,7 @@ class Core_Migration_Manager
     protected $_messages   = array();
     
     /**
-     * Constructor of Core_Migration_Manager
+     * Constructor of ZFTool_Migration_Manager
      *
      * @access  public
      * @param   array $options
@@ -233,7 +233,7 @@ class Core_Migration_Manager
         ));
         
         $class->setName($className)
-              ->setExtendedClass('Core_Migration_Abstract')
+              ->setExtendedClass('ZFTool_Migration_Abstract')
               ->setMethod($methodUp)
               ->setMethod($methodDown)
               ->setDocblock($classDoc);
@@ -349,7 +349,7 @@ class Core_Migration_Manager
      * Method add migration to schema table
      * 
      * @param string $migration Migration name
-     * @return Core_Migration_Manager 
+     * @return ZFTool_Migration_Manager 
      */
     protected function _updateMigration($migration)
     {
