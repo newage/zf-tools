@@ -6,15 +6,15 @@
  * @category Core
  * @package  ZFTool_Migration
  * @author   V.Leontiev
- * 
+ *
  * @version  $Id$
  */
 class ZFTool_Migration_Fixture
 {
-    
+
     /**
      * Load recors from fixture to base
-     * 
+     *
      * @param string $fixtureName If null then load all files from fixture folder
      * @author V.Leontiev
      */
@@ -23,9 +23,9 @@ class ZFTool_Migration_Fixture
         if ($fixtureName === null) {
             $fixtureName = $this->_scanFixtureDirectory();
         } else {
-            $fixtureName = array($fixtureName);
+            $fixtureName = array($fixtureName . '.yml');
         }
-        
+
         foreach ($fixtureName as $fixtureOne) {
             $pathToFile = $this->getFixturesDirectoryPath() . DIRECTORY_SEPARATOR . $fixtureOne;
 
@@ -41,10 +41,10 @@ class ZFTool_Migration_Fixture
             }
         }
     }
-    
+
     /**
      * Save records from table to fixture file
-     * 
+     *
      * @param string $tableName
      */
     public function save($tableName)
@@ -60,14 +60,14 @@ class ZFTool_Migration_Fixture
         file_put_contents($pathToFile, $yaml);
         $this->addMessage('Records from table "' . $tableName . '" to fixture "' . $fileName . '"', 'green');
     }
-    
+
     /**
      * Create reader
-     * 
+     *
      * @param string $filePath
      * @param string $readerName
      * @return ZFTool_Migration_Reader_Abstract
-     * @todo add object validation 
+     * @todo add object validation
      */
     protected function _getContentFromReader($filePath)
     {
@@ -75,12 +75,12 @@ class ZFTool_Migration_Fixture
         $objectName = 'ZFTool_Migration_Reader_' . ucfirst($pathInfo['extension']);
         return new $objectName($filePath);
     }
-    
+
     /**
      * Add data to table
-     * 
+     *
      * @param string $tableName
-     * @param string $data 
+     * @param string $data
      */
     protected function _setDataToTable($tableName, $rowset)
     {
@@ -94,10 +94,10 @@ class ZFTool_Migration_Fixture
             }
         }
     }
-    
+
     /**
      * Get all files name from fixture directory
-     * 
+     *
      * @return array
      */
     protected function _scanFixtureDirectory()
@@ -107,21 +107,21 @@ class ZFTool_Migration_Fixture
         unset($files[1]);
         return $files;
     }
-    
+
     /**
      * Method returns path to fixtures directory
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getFixturesDirectoryPath()
     {
         $path = APPLICATION_PATH . '/configs/fixtures';
         return $path;
     }
-    
+
     /**
      * Add new message
-     * 
+     *
      * @param string $message
      * @param array $color
      */
@@ -132,13 +132,13 @@ class ZFTool_Migration_Fixture
             'color' => $color
         );
     }
-    
+
     /**
      * Method returns stack of messages
      *
      * @return array
      */
-    public function getMessages() 
+    public function getMessages()
     {
         return $this->_messages;
     }
