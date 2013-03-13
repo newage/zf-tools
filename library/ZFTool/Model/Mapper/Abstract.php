@@ -2,13 +2,11 @@
 /**
  * Abstract Model mapper
  *
- * @category ZFScaffold
- * @package ZFScaffold_Model
- * @subpackage Mapper
- * @subpackage Resource
- * @license New BSD
- * @author V.Leontiev <vadim.leontiev@gmail.com>
- * @link https://bitbucket.org/newage/zf-tool
+ * @category Library
+ * @package Library_Model_Mapper
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 abstract class ZFTool_Model_Mapper_Abstract
 {

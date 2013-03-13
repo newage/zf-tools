@@ -2,11 +2,11 @@
 /**
  * Abstract adapter
  *
- * @category ZFScaffold
- * @package ZFScaffold_Adapter
- * @license New BSD
- * @author V.Leontiev <vadim.leontiev@gmail.com>
- * @link https://bitbucket.org/newage/zf-tool
+ * @category Library
+ * @package Library_Adapter
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 abstract class ZFTool_Adapter_Abstract
 {

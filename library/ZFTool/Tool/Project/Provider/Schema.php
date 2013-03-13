@@ -3,12 +3,11 @@
 /**
  * Database manager tool
  *
- * @category Schema
- * @package Schema_Tool_Project_Provider
- * @author V.Leontiev
- * @license New BSD
- * @author V.Leontiev <vadim.leontiev@gmail.com>
- * @link https://bitbucket.org/newage/zf-tool
+ * @category Library
+ * @package Library_Tool_Project_Provider
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 class ZFTool_Tool_Project_Provider_Schema
     extends ZFTool_Tool_Project_Provider_Abstract

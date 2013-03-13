@@ -3,12 +3,11 @@
 /**
  * Nead methods in all providers
  *
- * @category ZFTool
- * @package ZFTool_Tool
- * @see Zend_Tool_Project_Provider_Abstract
- * @license New BSD
- * @author V.Leontiev <vadim.leontiev@gmail.com>
- * @link https://bitbucket.org/newage/zf-tool
+ * @category Library
+ * @package Library_Tool_Project_Provider
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 abstract class ZFTool_Tool_Project_Provider_Abstract extends Zend_Tool_Project_Provider_Abstract
 {

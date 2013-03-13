@@ -5,11 +5,11 @@
  * Generate module used ZF folder sructure
  * Generate Controller, Model, ModelMapper, DbTable, Form, View
  *
- * @category Scaffold
- * @package Scaffold_Tool_Project_Provider
- * @license New BSD
- * @author V.Leontiev <vadim.leontiev@gmail.com>
- * @link https://bitbucket.org/newage/zf-tool
+ * @category Library
+ * @package Library_Tool_Project_Provider
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 class ZFTool_Tool_Project_Provider_Scaffold
     extends Zend_Tool_Project_Provider_Abstract

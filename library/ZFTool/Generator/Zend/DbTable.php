@@ -3,12 +3,11 @@
 /**
  * Generate model/DbTable
  *
- * @category ZFScaffold
- * @package ZFScaffold_Generator
- * @subpackage Zend
- * @license New BSD
- * @author V.Leontiev <vadim.leontiev@gmail.com>
- * @link https://bitbucket.org/newage/zf-tool
+ * @category Library
+ * @package Library_Generator_Zend
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 class ZFTool_Generator_Zend_DbTable
     extends ZFTool_Generator_Abstract

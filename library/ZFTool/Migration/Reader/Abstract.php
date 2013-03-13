@@ -1,18 +1,17 @@
 <?php
 
 /**
- * Abstract Reader
+ * Abstract Reader for migration
  *
- * @category Core
- * @package  ZFTool_Migration
- * @subpackage ZFTool_Migration_Reader
- * @author   V.Leontiev
- * 
- * @version  $Id$
+ * @category Library
+ * @package Library_Migration_Reader
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 class ZFTool_Migration_Reader_Abstract implements Countable, Iterator
 {
- 
+
     /**
      * Iteration index
      *
@@ -33,7 +32,7 @@ class ZFTool_Migration_Reader_Abstract implements Countable, Iterator
      * @var array
      */
     protected $_data;
-    
+
     /**
      * Used when unsetting values during iteration to ensure we do not skip
      * the next element
@@ -41,11 +40,11 @@ class ZFTool_Migration_Reader_Abstract implements Countable, Iterator
      * @var boolean
      */
     protected $_skipNextIteration;
-    
+
     /**
      *
      * @param array $array
-     * @param type $allowModifications 
+     * @param type $allowModifications
      */
     public function __construct(array $array)
     {
@@ -60,7 +59,7 @@ class ZFTool_Migration_Reader_Abstract implements Countable, Iterator
         }
         $this->_count = count($this->_data);
     }
-    
+
     /**
      * Retrieve a value and return $default if there is no element set.
      *
@@ -233,5 +232,5 @@ class ZFTool_Migration_Reader_Abstract implements Countable, Iterator
     {
         return $this->_index < $this->_count;
     }
-    
+
 }
