@@ -3,12 +3,11 @@
 /**
  * Get db adapter from config
  *
- * @category ZFScaffold
- * @package ZFScaffold_Application
- * @subpackage Resource
- * @license New BSD
- * @author V.Leontiev <vadim.leontiev@gmail.com>
- * @link https://bitbucket.org/newage/zf-tool
+ * @category Library
+ * @package Library_Appliucation_Resource
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 class ZFTool_Application_Resource_Scaffold extends Zend_Application_Resource_ResourceAbstract
 {

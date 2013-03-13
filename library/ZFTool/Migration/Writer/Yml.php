@@ -3,16 +3,15 @@
 /**
  * Write data to Yaml
  *
- * @category Core
- * @package ZFTool_Migration
- * @subpackage ZFTool_Migration_Writer
- * @author V.Leontiev
- * 
- * @version  $Id$
+ * @category Library
+ * @package Library_Migration_Writer
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 class ZFTool_Migration_Writer_Yml
 {
-    
+
     public static function encode(array $rows)
     {
         return self::_encodeYaml($rows);
@@ -43,7 +42,7 @@ class ZFTool_Migration_Writer_Yml
                 $yaml[] = str_repeat(' ', $space * 2) . $key . ': ' . $row;
             }
         }
-        
+
         return implode("\n", $yaml);
     }
 }

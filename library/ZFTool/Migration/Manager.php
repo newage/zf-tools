@@ -1,14 +1,12 @@
 <?php
 /**
- * Class ZFTool_Migration_Manager
- *
  * Migration manager
  *
- * @category Core
- * @package  ZFTool_Migration
- * @author   V.Leontiev
- * 
- * @version  $Id$
+ * @category Library
+ * @package Library_Migration
+ * @author Vadim Leontiev <vadim.leontiev@gmail.com>
+ * @see https://bitbucket.org/newage/zf-tool
+ * @since php 5.1 or higher
  */
 class ZFTool_Migration_Manager
 {
@@ -21,29 +19,29 @@ class ZFTool_Migration_Manager
         // Migrations schema table name
         'migrationsSchemaTable'   => 'migrations',
     );
-    
+
     /**
      * Message stack
-     * 
-     * @var array 
+     *
+     * @var array
      */
     protected $_messages   = array();
-    
+
     /**
      * Constructor of ZFTool_Migration_Manager
      *
      * @access  public
      * @param   array $options
      */
-    public function __construct($options = array()) 
+    public function __construct($options = array())
     {
         if ($options) {
             $this->_options = array_merge($this->_options, $options);
         }
-        
+
         $this->_init();
     }
-    
+
     /**
      * Method initialize migration schema table
      */
@@ -56,25 +54,25 @@ class ZFTool_Migration_Manager
         ";
         Zend_Db_Table::getDefaultAdapter()->query($sql);
     }
-    
+
     /**
      * Method returns path to migrations directory
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getMigrationsDirectoryPath()
     {
         $path = APPLICATION_PATH . '/configs/migrations';
-        
+
         $this->_preparePath($path);
-        
+
         return $path;
     }
-    
+
     /**
      * Method prepare path (create not existing dirs)
-     * 
-     * @param string $path 
+     *
+     * @param string $path
      */
     protected function _preparePath($path)
     {
@@ -83,23 +81,23 @@ class ZFTool_Migration_Manager
             mkdir($path, 0777);
         }
     }
-    
+
     /**
      * Method return migrations schema table
-     *  
+     *
      * @return string
      */
     public function getMigrationsSchemaTable()
     {
         return $this->_options['migrationsSchemaTable'];
     }
-    
+
     /**
      * Method returns array of exists in filesystem migrations
      *
      * @return array
      */
-    public function getExistsMigrations() 
+    public function getExistsMigrations()
     {
         $filesDirty = scandir($this->getMigrationsDirectoryPath());
 
@@ -112,26 +110,26 @@ class ZFTool_Migration_Manager
 
         return $files;
     }
-    
+
     /**
      * Method returns stack of messages
      *
      * @return array
      */
-    public function getMessages() 
+    public function getMessages()
     {
         return $this->_messages;
     }
-    
+
     /**
      * Method return number of save migrations
      *
      * @return string
      */
-    public function getLastMigration() 
+    public function getLastMigration()
     {
         $lastMigration = null;
-        
+
         try {
             $select = Zend_Db_Table::getDefaultAdapter()->select()
                 ->from($this->getMigrationsSchemaTable(), array('migration'));
@@ -142,28 +140,28 @@ class ZFTool_Migration_Manager
             // maybe table is not exist; this is first revision
             $lastMigration = 0;
         }
-        
+
         //Insert new row
         if ($lastMigration === false) {
             $sql = "INSERT INTO `".$this->getMigrationsSchemaTable()."` VALUES(0)";
             Zend_Db_Table::getDefaultAdapter()->query($sql);
-            
+
             $lastMigration = 0;
         }
-        
+
         return $lastMigration;
     }
-    
+
     /**
      * Method create's new migration file
-     * 
+     *
      * @return string Migration name
      */
     public function create()
     {
         $path = $this->getMigrationsDirectoryPath();
         $_migrationName = time();
-       
+
         // Configuring after instantiation
         $methodUpDoc = new Zend_CodeGenerator_Php_Docblock(array(
             'setShortDescription' => 'Upgrade method',
@@ -178,12 +176,12 @@ class ZFTool_Migration_Manager
                 )
             )
         ));
-        
+
         $methodUp = new Zend_CodeGenerator_Php_Method();
         $methodUp->setName('up')
                  ->setDocblock($methodUpDoc)
                  ->setBody('$this->query("");');
-                 
+
         // Configuring after instantiation
         $methodDownDoc = new Zend_CodeGenerator_Php_Docblock(array(
             'setShortDescription' => 'Downgrade method',
@@ -198,12 +196,12 @@ class ZFTool_Migration_Manager
                 )
             )
         ));
-        
+
         $methodDown = new Zend_CodeGenerator_Php_Method();
         $methodDown->setName('down')
                    ->setDocblock($methodDownDoc)
                    ->setBody('$this->query("");');
-                   
+
         $class = new Zend_CodeGenerator_Php_Class();
         $className = 'Migration_' . $_migrationName;
 
@@ -231,30 +229,30 @@ class ZFTool_Migration_Manager
                 )
             )
         ));
-        
+
         $class->setName($className)
               ->setExtendedClass('ZFTool_Migration_Abstract')
               ->setMethod($methodUp)
               ->setMethod($methodDown)
               ->setDocblock($classDoc);
-        
+
         $file = new Zend_CodeGenerator_Php_File();
         $file->setClass($class)
              ->setFilename($path . '/' . $_migrationName . '.php')
              ->write();
-             
+
         return $_migrationName;
     }
-    
+
     /**
      * Method upgrade all migration or migrations to selected
      *
      * @param string $tomigration
      */
-    public function migration($toMigration) 
+    public function migration($toMigration)
     {
         $applyMigration = $this->getLastMigration();
-        
+
         if ($toMigration == 0 || $toMigration == 'last' || $toMigration > $applyMigration) {
             //upgrade
             $upgrade = true;
@@ -262,21 +260,21 @@ class ZFTool_Migration_Manager
             //downgrade
             $upgrade = false;
         }
-        
+
         $applyMigrationFiles = $this->_getApplyMigrationFiles($toMigration, $upgrade);
         $this->applyMigrationFiles($applyMigrationFiles, $upgrade);
     }
 
     /**
      * Execute migration files
-     * 
+     *
      * @param array $files
-     * @param bool $upgrade 
+     * @param bool $upgrade
      */
     protected function applyMigrationFiles(array $files, $upgrade = true)
     {
         $applyMigration = $this->getLastMigration();
-        
+
         foreach ($files as $migration) {
             $includePath = $this->getMigrationsDirectoryPath() .
                 DIRECTORY_SEPARATOR . $migration . '.php';
@@ -285,10 +283,10 @@ class ZFTool_Migration_Manager
 
             $methodName = $upgrade === true ? 'up' : 'down';
             $migrationClass  = 'Migration_'.$migration;
-            $migrationObject = new $migrationClass;  
+            $migrationObject = new $migrationClass;
 
             $migrationObject->getDbAdapter()->beginTransaction();
-            
+
             try {
                 $migrationObject->$methodName();
                 $migrationObject->getDbAdapter()->commit();
@@ -310,11 +308,11 @@ class ZFTool_Migration_Manager
             }
         }
     }
-    
+
     /**
      * Get files to apply migration
-     * 
-     * @param int $maxMigration 
+     *
+     * @param int $maxMigration
      * @param bool $upgrade
      * @return bool|array
      */
@@ -323,33 +321,33 @@ class ZFTool_Migration_Manager
         $existFiles = $this->getExistsMigrations();
         $applyMigration = (int)$this->getLastMigration();
         $fileCounter = count($existFiles);
-        
+
         if ($toMigration == 0) {
             $toMigration = $fileCounter;
         }
-        
+
         if ($toMigration > $applyMigration) {
             sort($existFiles);
             $applyMigrationFiles = array_slice($existFiles, $applyMigration, $toMigration);
             return $applyMigrationFiles;
-            
+
         } elseif ($toMigration < $applyMigration) {
             $applyMigrationFiles = array_slice($existFiles, $toMigration, $applyMigration - $toMigration);
             rsort($applyMigrationFiles);
             return $applyMigrationFiles;
-            
+
         } else {
             $this->addMessage('Database contains the latest changes', 'green');
             return true;
         }
 
     }
-    
+
     /**
      * Method add migration to schema table
-     * 
+     *
      * @param string $migration Migration name
-     * @return ZFTool_Migration_Manager 
+     * @return ZFTool_Migration_Manager
      */
     protected function _updateMigration($migration)
     {
@@ -360,13 +358,13 @@ class ZFTool_Migration_Manager
         } catch (Exception $e) {
             // table is not exist
         }
-        
+
         return $this;
     }
-   
+
     /**
      * Add new message
-     * 
+     *
      * @param string $message
      * @param array $color
      */
@@ -377,10 +375,10 @@ class ZFTool_Migration_Manager
             'color' => $color
         );
     }
-    
+
     /**
      * Get all messages
-     * 
+     *
      * @return array
      */
     public function getMessage()
